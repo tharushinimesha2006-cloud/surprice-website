@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Game 💖</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+font-family:Arial;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+width:85%;
+max-width:400px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+button{
+padding:10px;
+margin:5px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>💖 Who loves you the most?</h2>
+
+<button onclick="wrong()">Someone else</button>
+<button onclick="correct()">CHUTY 💖</button>
+<button onclick="wrong()">I don’t know</button>
+
+</div>
+
+<script>
+
+function correct(){
+alert("💖 Correct!");
+window.location.href="letter.html";
+}
+
+function wrong(){
+alert("Nope 😢 Try again");
+}
+
+</script>
+
+</body>
+</html>

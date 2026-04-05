@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gift 💝</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle,#111,#000);
+color:white;
+font-family:Arial;
+overflow:hidden;
+}
+
+.box{
+font-size:110px;
+cursor:pointer;
+animation:float 2s infinite ease-in-out;
+text-shadow:0 0 20px #ff4d6d;
+user-select:none;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+}
+
+.glow{
+position:fixed;
+inset:0;
+background:radial-gradient(circle,rgba(255,77,109,0.5),transparent);
+opacity:0;
+transition:0.4s;
+pointer-events:none;
+}
+
+button{
+display:none;
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+z-index:10;
+}
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:20px;
+animation:rise 2s linear forwards;
+}
+
+@keyframes rise{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-250px);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<h2>🎁 Tap the Gift</h2>
+
+<div class="box" id="gift">🎁</div>
+
+<div class="glow" id="glow"></div>
+
+<button id="nextBtn">Next 💖🌹</button>
+
+<script>
+// WAIT until page loads
+window.onload = function(){
+
+const gift = document.getElementById("gift");
+const glow = document.getElementById("glow");
+const nextBtn = document.getElementById("nextBtn");
+
+// CLICK GIFT
+gift.addEventListener("click", function(){
+
+glow.style.opacity = "1";
+
+setTimeout(()=>{
+glow.style.opacity = "0";
+},500);
+
+// hearts explosion
+for(let i=0;i<40;i++){
+let h = document.createElement("div");
+h.className = "heart";
+h.innerHTML = "💖";
+h.style.left = Math.random()*100 + "vw";
+h.style.top = "70vh";
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),2000);
+}
+
+// show next button
+setTimeout(()=>{
+nextBtn.style.display = "block";
+},800);
+
+});
+
+// NEXT BUTTON
+nextBtn.addEventListener("click", function(){
+window.location.href = "game.html";
+});
+
+};
+</script>
+
+</body>
+</html>

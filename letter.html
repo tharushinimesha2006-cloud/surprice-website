@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Letter 💖</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+transition:0.5s;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.heart{
+position:fixed;
+color:#ff4d6d;
+font-size:20px;
+animation:floatUp 5s linear forwards;
+z-index:9999;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
+/* ☀️ DAY */
+body.light{
+background:#ffb6c1;
+color:#222;
+}
+
+/* 🌙 NIGHT */
+body.dark{
+background:black;
+color:white;
+}
+
+/* 🌙☀️ THEME BUTTONS */
+.theme-box{
+position:fixed;
+top:15px;
+right:15px;
+z-index:9999;
+display:flex;
+gap:8px;
+}
+
+.theme-box button{
+padding:8px 12px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+/* 💌 OPEN BUTTON (CENTER BIG FIRST) */
+.openBtn{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:18px 28px;
+font-size:20px;
+border:none;
+border-radius:15px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+z-index:9999;
+transition:0.6s ease;
+box-shadow:0 0 20px rgba(255,77,109,0.5);
+}
+
+/* MOVE TO TOP */
+.openBtn.top{
+top:15px;
+left:50%;
+transform:translateX(-50%);
+font-size:14px;
+padding:8px 12px;
+border-radius:20px;
+}
+
+/* 💌 LETTER BOX */
+.card{
+width:85%;
+max-width:500px;
+height:65vh;
+padding:20px;
+border-radius:18px;
+overflow-y:auto;
+line-height:1.7;
+white-space:pre-line;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+margin-top:80px;
+display:none;
+}
+
+/* DAY CARD */
+body.light .card{
+background:white;
+color:#222;
+}
+
+/* NIGHT CARD */
+body.dark .card{
+background:#111;
+color:white;
+}
+</style>
+</head>
+
+<body class="light">
+
+<!-- 🌙☀️ THEME -->
+<div class="theme-box">
+<button onclick="setDark()">🌙 Night</button>
+<button onclick="setLight()">☀️ Day</button>
+</div>
+
+<!-- 💌 BUTTON -->
+<button class="openBtn" id="openBtn" onclick="start()">💌 Open Letter</button>
+
+<!-- 💌 LETTER -->
+<div class="card" id="text"></div>
+
+<script>
+
+let opened = false;   // 🚫 prevent multiple clicks
+
+let fullText = `I don’t even know where to begin, because there are so many things I feel for you that words can’t fully explain… but I’ll try, because you deserve to know how much you mean to me.
+
+Even though I haven't seen you live yet, and I only get to see you through video calls… you still make my world feel so complete. It’s strange, isn’t it? How someone so far away can feel so close to my heart every single day.
+
+There are moments when I miss you so much it hurts… when I wish I could just see you, talk to you face to face, or even just sit quietly next to you. But even with all that distance, you never fail to make me smile. You make my days brighter in ways you probably don’t even realize.
+
+From Sri Lanka to Australia… there’s a whole world between us, but somehow my heart always finds its way to you. No matter how far you are, you are always with me in my thoughts, in my smile, and in everything I do.
+
+Thank you for loving me the way you do.
+Thank you for being patient with me.
+Thank you for making me feel special, safe, and happy.
+
+I’m so lucky to have you in my life, SUDU. Truly. You are not just my boyfriend… you are my comfort, my happiness, and my favorite person in this whole world.
+
+No matter what happens, no matter how far the distance is… my heart will always choose you. Again and again.
+
+I love you more than words can ever explain…
+Forever and always 💖`;
+
+function setDark(){
+document.body.className = "dark";
+}
+
+function setLight(){
+document.body.className = "light";
+}
+
+function start(){
+
+// 💖 HEARTS START AFTER OPEN
+setInterval(()=>{
+let heart = document.createElement("div");
+heart.className = "heart";
+heart.innerHTML = "💖";
+heart.style.left = Math.random() * 100 + "vw";
+document.body.appendChild(heart);
+
+// remove after animation
+setTimeout(()=>heart.remove(), 5000);
+
+}, 300);
+
+// 🚫 STOP MULTIPLE CLICK BUG
+if(opened) return;
+opened = true;
+
+// move button to top
+let btn = document.getElementById("openBtn");
+btn.classList.add("top");
+
+// show letter box
+let box = document.getElementById("text");
+box.style.display = "block";
+box.innerHTML = "";
+
+// typing animation (safe)
+let i = 0;
+function type(){
+if(i < fullText.length){
+box.innerHTML += fullText[i];
+i++;
+setTimeout(type, 20);
+}
+}
+type();
+}
+
+</script>
+
+</body>
+</html>
